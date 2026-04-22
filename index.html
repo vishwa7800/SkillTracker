@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillTracker – Track Your Skill Growth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══ INTRO ══════════════════════════════════════ -->
+<div id="intro">
+  <div class="intro-glow"></div>
+  <div class="intro-body">
+    <div class="intro-logo-row">
+      <span class="intro-diamond">◈</span>
+      <span class="intro-brand">SkillTracker</span>
+    </div>
+    <p class="intro-tagline">Track your skills. See your growth.</p>
+    <div class="intro-track"><div class="intro-fill"></div></div>
+  </div>
+</div>
+
+<!-- ══ LANDING ════════════════════════════════════ -->
+<div id="page-landing" class="page">
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="lnd-header">
+    <a class="logo-link" href="#" onclick="goPage('landing');return false;">◈ SkillTracker</a>
+    <nav class="lnd-nav">
+      <a href="#sec-features" onclick="smoothScrollToSection('sec-features');return false;">Features</a>
+      <a href="#sec-how" onclick="smoothScrollToSection('sec-how');return false;">How it works</a>
+      <button class="btn btn-outline" onclick="goPage('login')">Login</button>
+      <button class="btn btn-red"     onclick="goPage('register')">Get Started</button>
+    </nav>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+    <div class="mob-nav" id="mob-nav">
+      <a href="#sec-features" onclick="smoothScrollToSection('sec-features');toggleMenu();return false;">Features</a>
+      <a href="#sec-how" onclick="smoothScrollToSection('sec-how');toggleMenu();return false;">How it works</a>
+      <button class="btn btn-outline" onclick="goPage('login');   toggleMenu()">Login</button>
+      <button class="btn btn-red"     onclick="goPage('register');toggleMenu()">Get Started</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+    <div class="hero-text">
+      <span class="hero-pill">🎯 Built for self-learners</span>
+      <h1 class="hero-h1">Grow your skills,<br><em>one session at a time.</em></h1>
+      <p class="hero-p">Your private learning dashboard — add skills, log practice sessions, and watch progress unfold through beautiful charts.</p>
+      <div class="hero-btns">
+        <button class="btn btn-red btn-lg" onclick="goPage('register')">Start Tracking Free</button>
+        <a class="btn btn-ghost btn-lg" href="#sec-how" onclick="smoothScrollToSection('sec-how');return false;">See how it works →</a>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <div class="hc-top">
+          <div class="hc-dots"><span></span><span></span><span></span></div>
+          <span class="hc-label">Weekly Progress</span>
+        </div>
+        <div class="hc-skill">Frontend Development</div>
+        <svg class="hc-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" preserveAspectRatio="none" style="height: 100px; margin-bottom: 20px;">
+  <polyline points="10,60 50,35 100,50 150,18 200,32 250,10 300,45" stroke="#e94560" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="10" cy="60" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+  <circle cx="50" cy="35" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+  <circle cx="100" cy="50" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+  <circle cx="150" cy="18" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+  <circle cx="200" cy="32" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+  <circle cx="250" cy="10" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+  <circle cx="300" cy="45" r="4" fill="#e94560" stroke="white" stroke-width="2"/>
+</svg>
+<div class="hc-bar-labels">
+  <span class="hc-day">M</span>
+  <span class="hc-day">T</span>
+  <span class="hc-day">W</span>
+  <span class="hc-day">T</span>
+  <span class="hc-day">F</span>
+  <span class="hc-day">S</span>
+  <span class="hc-day">S</span>
+</div>
+        <div class="hc-stats">
+          <div class="hcs"><span class="hcs-v">14</span><span class="hcs-l">Day streak</span></div>
+          <div class="hcs"><span class="hcs-v">8/10</span><span class="hcs-l">Sessions</span></div>
+          <div class="hcs"><span class="hcs-v hcs-active">Active</span><span class="hcs-l">Status</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="sec-features" class="lnd-sec feat-sec">
+    <div class="sec-head">
+      <span class="eyebrow">What you get</span>
+      <h2>Everything to stay consistent</h2>
+      <p>Simple tools that make skill growth visible and sustainable.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-n">01</div><h3>User Authentication</h3><p>Secure Gmail-only accounts. Your data stays yours, always.</p></div>
+      <div class="feat-card"><div class="feat-n">02</div><h3>Skill Management</h3><p>Add, edit, or remove skills and set session goals anytime.</p></div>
+      <div class="feat-card"><div class="feat-n">03</div><h3>Progress Logging</h3><p>Record practice sessions with dates and notes. Zero friction.</p></div>
+      <div class="feat-card"><div class="feat-n">04</div><h3>Visual Charts</h3><p>See your growth plotted over time with clean line charts.</p></div>
+      <div class="feat-card"><div class="feat-n">05</div><h3>Inactivity Alerts</h3><p>Skills idle for 30+ days get flagged so nothing slips.</p></div>
+      <div class="feat-card"><div class="feat-n">06</div><h3>Anonymous Community</h3><p>Share tips and ask questions without revealing your identity.</p></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="sec-how" class="lnd-sec how-sec">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps to consistent growth</h2>
+      <p>Getting started takes under two minutes.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card"><div class="how-num">1</div><h3>Create Account</h3><p>Sign up with your Gmail and a strong password.</p></div>
+      <div class="how-arr">→</div>
+      <div class="how-card"><div class="how-num">2</div><h3>Add Skills</h3><p>Add the skills you want to build and set a session goal.</p></div>
+      <div class="how-arr">→</div>
+      <div class="how-card"><div class="how-num">3</div><h3>Log Sessions</h3><p>After every practice, log with a date and short note.</p></div>
+      <div class="how-arr">→</div>
+      <div class="how-card"><div class="how-num">4</div><h3>See Growth</h3><p>Check charts and track improvement skill by skill.</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="lnd-sec cta-sec">
+    <div class="cta-box">
+      <h2>Ready to track your growth?</h2>
+      <p>Join other learners building skills consistently.</p>
+      <button class="btn btn-red btn-lg" onclick="goPage('register')">Create Free Account</button>
+    </div>
+  </section>
+
+  <footer class="lnd-footer">
+    <span>◈ SkillTracker</span>
+    <span>© 2026 · All rights reserved</span>
+  </footer>
+</div><!-- /page-landing -->
+
+
+<!-- ══ REGISTER ═══════════════════════════════════ -->
+<div id="page-register" class="page auth-page">
+  <div class="auth-left">
+    <div class="auth-left-inner">
+      <a class="logo-link white" href="#" onclick="goPage('landing');return false;">◈ SkillTracker</a>
+      <h2>Start building skills today.</h2>
+      <p>Log sessions, track progress, visualize growth — all in one private space.</p>
+      <ul class="auth-perks">
+        <li>✓ Free forever</li>
+        <li>✓ Gmail-only secure sign-up</li>
+        <li>✓ Visual progress charts</li>
+        <li>✓ Data stored in cloud (Supabase)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="auth-right">
+    <div class="auth-box">
+      <h2>Create Account</h2>
+      <p class="auth-switch">Already have one? <a href="#" onclick="goPage('login');return false;">Login here</a></p>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="r-name" placeholder="John Doe" autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label>Gmail Address <span class="req">*</span></label>
+        <input type="email" id="r-email" placeholder="you@gmail.com" autocomplete="email" />
+        <small>Only @gmail.com addresses are accepted.</small>
+      </div>
+      <div class="form-group">
+        <label>Password <span class="req">*</span></label>
+        <div class="pw-wrap">
+          <input type="password" id="r-pass" placeholder="Min 6 chars, 1 cap, 1 symbol, 1 number" autocomplete="new-password" oninput="checkPwStrength(this.value)" />
+          <button type="button" class="pw-eye" onclick="togglePw('r-pass',this)">👁</button>
+        </div>
+        <div class="pw-rules" id="r-rules">
+          <span id="rr-len"  class="rule">✗ Min 6 characters</span>
+          <span id="rr-cap"  class="rule">✗ 1 uppercase letter</span>
+          <span id="rr-num"  class="rule">✗ 1 number</span>
+          <span id="rr-sym"  class="rule">✗ 1 symbol (@,$,#,!…)</span>
+        </div>
+      </div>
+      <div id="r-err" class="form-err" style="display:none"></div>
+      <button class="btn btn-red full" id="r-btn" onclick="handleRegister()">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ LOGIN ══════════════════════════════════════ -->
+<div id="page-login" class="page auth-page">
+  <div class="auth-left">
+    <div class="auth-left-inner">
+      <a class="logo-link white" href="#" onclick="goPage('landing');return false;">◈ SkillTracker</a>
+      <h2>Welcome back, learner.</h2>
+      <p>Pick up where you left off. Your skills and progress are waiting.</p>
+      <ul class="auth-perks">
+        <li>✓ Private dashboard</li>
+        <li>✓ Track every session</li>
+        <li>✓ Visual charts</li>
+      </ul>
+    </div>
+  </div>
+  <div class="auth-right">
+    <div class="auth-box">
+      <h2>Welcome Back</h2>
+      <p class="auth-switch">New here? <a href="#" onclick="goPage('register');return false;">Create account</a></p>
+
+      <div class="form-group">
+        <label>Gmail Address</label>
+        <input type="email" id="l-email" placeholder="you@gmail.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" />
+          <button type="button" class="pw-eye" onclick="togglePw('l-pass',this)">👁</button>
+        </div>
+      </div>
+      <div id="l-err" class="form-err" style="display:none"></div>
+      <button class="btn btn-red full" id="l-btn" onclick="handleLogin()">Login →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ DASHBOARD SHELL ════════════════════════════ -->
+<div id="page-dash" class="page dash-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo">◈ SkillTracker</div>
+    <nav class="sb-nav">
+      <button class="sb-item active" data-p="dashboard"      onclick="goPage('dashboard')">      <i>⊞</i> Dashboard</button>
+      <button class="sb-item"        data-p="skills"         onclick="goPage('skills')">          <i>◐</i> My Skills</button>
+      <button class="sb-item"        data-p="log"            onclick="goPage('log')">             <i>✚</i> Log Session</button>
+      <button class="sb-item"        data-p="charts"         onclick="goPage('charts')">          <i>◈</i> Progress Charts</button>
+      <button class="sb-item"        data-p="community"      onclick="goPage('community')">       <i>◉</i> Community</button>
+      <button class="sb-item"        data-p="profile"        onclick="goPage('profile')">         <i>◌</i> Profile</button>
+    </nav>
+    <div class="sb-user">
+      <div class="sb-av" id="sb-av">U</div>
+      <div class="sb-info">
+        <div class="sb-uname" id="sb-uname">User</div>
+        <div class="sb-email" id="sb-email">user@gmail.com</div>
+      </div>
+      <button class="sb-logout" onclick="handleLogout()" title="Logout">⏻</button>
+    </div>
+  </aside>
+
+  <div class="dash-body">
+    <header class="dash-hdr">
+      <button class="sb-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="dh-title" id="dh-title">Dashboard</div>
+      <div class="dh-right">
+        <span id="dh-uname">User</span>
+        <button class="btn btn-sm-out" onclick="handleLogout()">Logout</button>
+      </div>
+    </header>
+
+    <main class="dash-main">
+
+      <!-- ─ DASHBOARD ─────────────────────────── -->
+      <div id="panel-dashboard" class="panel">
+        <div class="panel-hd">
+          <div><h1>My Dashboard</h1><p class="panel-sub">Here's your skill overview.</p></div>
+          <div class="panel-acts">
+            <button class="btn btn-red"     onclick="openAddSkill()">+ Add Skill</button>
+            <button class="btn btn-outline" onclick="goPage('log')">Log Session</button>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><span class="sb-lbl">Total Skills</span>   <span class="sb-val" id="s-total">0</span></div>
+          <div class="stat-box"><span class="sb-lbl">Active Skills</span>  <span class="sb-val" id="s-active">0</span></div>
+          <div class="stat-box"><span class="sb-lbl">Sessions Logged</span><span class="sb-val" id="s-sessions">0</span></div>
+          <div class="stat-box"><span class="sb-lbl">Overall Progress</span><span class="sb-val" id="s-pct">0%</span></div>
+        </div>
+        <div class="dash-card" id="inactive-card" style="display:none">
+          <div class="dc-hd"><h2>⚠ Needs Attention</h2><span class="dc-hint">Skills with no practice in 30+ days</span></div>
+          <div id="inactive-list"></div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-hd"><h2>My Skills</h2><button class="btn-sm-out" onclick="openAddSkill()">+ Add New</button></div>
+          <div id="skills-grid" class="skills-grid"><div class="empty">No skills yet. <a href="#" onclick="openAddSkill();return false;">Add your first →</a></div></div>
+        </div>
+        <div class="dash-card">
+          <div class="dc-hd"><h2>Recent Sessions</h2><button class="btn-sm-out" onclick="goPage('log')">+ Log</button></div>
+          <div id="recent-list"><div class="empty">No sessions yet.</div></div>
+        </div>
+      </div>
+
+      <!-- ─ MY SKILLS ─────────────────────────── -->
+      <div id="panel-skills" class="panel" style="display:none">
+        <div class="panel-hd">
+          <div><h1>My Skills</h1><p class="panel-sub">Manage all your skills.</p></div>
+          <button class="btn btn-red" onclick="openAddSkill()">+ Add Skill</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="skills-tbl">
+            <thead><tr><th>Skill</th><th>Sessions</th><th>Progress</th><th>Status</th><th>Last Logged</th><th>Actions</th></tr></thead>
+            <tbody id="skills-tbl-body"><tr><td colspan="6" class="empty">No skills yet.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ─ ADD / EDIT SKILL ───────────────────── -->
+      <div id="panel-add-skill" class="panel" style="display:none">
+        <div class="panel-hd">
+          <div><h1 id="skill-form-title">Add New Skill</h1><p class="panel-sub">Define a skill and set your session goal.</p></div>
+          <button class="btn btn-ghost" onclick="goPage('dashboard')">← Back</button>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label>Skill Name <span class="req">*</span></label>
+            <input type="text" id="sk-name" placeholder="e.g. JavaScript, Public Speaking" />
+          </div>
+          <div class="form-group">
+            <label>Session Goal <span class="req">*</span></label>
+            <div class="goal-row">
+              <button type="button" class="btn btn-ghost goal-btn" onclick="changeGoal(-1)">−</button>
+              <input type="number" id="sk-goal" value="5" min="1" oninput="onGoalChange()" />
+              <button type="button" class="btn btn-ghost goal-btn" onclick="changeGoal(1)">+</button>
+            </div>
+            <small>How many sessions to complete for this skill.</small>
+          </div>
+          <div class="form-group">
+            <label>Session Topics <span class="muted-lbl">(optional)</span></label>
+            <div id="session-topics"></div>
+            <small>Name each planned session or topic.</small>
+          </div>
+          <div class="form-group">
+            <label>Description <span class="muted-lbl">(optional)</span></label>
+            <textarea id="sk-desc" rows="3" placeholder="Describe the skill or what you plan to learn."></textarea>
+          </div>
+          <div id="sk-err" class="form-err" style="display:none"></div>
+          <div class="form-btns">
+            <button class="btn btn-red" id="sk-submit" onclick="handleSaveSkill()">Add Skill</button>
+            <button class="btn btn-outline" onclick="goPage('dashboard')">Cancel</button>
+          </div>
+          <input type="hidden" id="edit-skill-id" />
+        </div>
+      </div>
+
+      <!-- ─ LOG SESSION ────────────────────────── -->
+      <div id="panel-log" class="panel" style="display:none">
+        <div class="panel-hd">
+          <div><h1>Log Practice Session</h1><p class="panel-sub">Record what you practiced today.</p></div>
+          <button class="btn btn-ghost" onclick="goPage('dashboard')">← Back</button>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label>Skill <span class="req">*</span></label>
+            <select id="log-skill"><option value="">Choose a skill…</option></select>
+          </div>
+          <div class="form-group">
+            <label>Session Title / Topic <span class="req">*</span></label>
+            <input type="text" id="log-title" placeholder="e.g. CSS Flexbox, Array methods" />
+          </div>
+          <div class="form-group">
+            <label>Date <span class="req">*</span></label>
+            <input type="date" id="log-date" />
+          </div>
+          <div class="form-group">
+            <label>Notes <span class="muted-lbl">(optional)</span></label>
+            <textarea id="log-notes" rows="4" placeholder="What did you learn or practice?"></textarea>
+          </div>
+          <div id="log-err" class="form-err" style="display:none"></div>
+          <div class="form-btns">
+            <button class="btn btn-red" id="log-btn" onclick="handleLogSession()">Save Session</button>
+            <button class="btn btn-outline" onclick="goPage('dashboard')">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ CHARTS ─────────────────────────────── -->
+      <div id="panel-charts" class="panel" style="display:none">
+        <div class="panel-hd"><div><h1>Progress Charts</h1><p class="panel-sub">Visualize your session growth over time.</p></div></div>
+        <div class="form-card">
+          <div class="form-group">
+            <label>Select a Skill</label>
+            <select id="chart-skill-sel" onchange="renderChart()"><option value="">Choose a skill…</option></select>
+          </div>
+          <div id="chart-summary" class="chart-summary" style="display:none">
+            <div class="cs-row">
+              <div class="cs-item"><span class="cs-v" id="cs-goal">–</span><span class="cs-l">Goal</span></div>
+              <div class="cs-item"><span class="cs-v" id="cs-done">–</span><span class="cs-l">Completed</span></div>
+              <div class="cs-item"><span class="cs-v" id="cs-pct">–</span> <span class="cs-l">Progress</span></div>
+              <div class="cs-item"><span class="cs-v" id="cs-left">–</span><span class="cs-l">Remaining</span></div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+          </div>
+          <div id="chart-box" style="display:none;position:relative;height:340px;margin-top:24px"><canvas id="skillChart"></canvas></div>
+          <div id="chart-empty" class="empty" style="padding:48px 0">Select a skill above to view its progress chart.</div>
+        </div>
+        <div class="form-card" style="margin-top:20px">
+          <h3>All Skills at a Glance</h3>
+          <div id="all-summary"></div>
+        </div>
+      </div>
+
+      <!-- ─ COMMUNITY ─────────────────────────── -->
+      <div id="panel-community" class="panel" style="display:none">
+        <div class="panel-hd"><div><h1>Community</h1><p class="panel-sub">Share tips and ask questions anonymously.</p></div></div>
+        <div class="community-wrap">
+          <div class="form-card">
+            <h3>Post Anonymously</h3>
+            <p style="color:var(--muted);font-size:.9rem;margin-bottom:16px">Your identity is never revealed.</p>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="post-cat">
+                <option value="tip">💡 Learning Tip</option>
+                <option value="question">❓ Question</option>
+                <option value="motivation">🔥 Motivation</option>
+                <option value="resource">📚 Resource Share</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Message</label>
+              <textarea id="post-body" rows="4" placeholder="Share a tip, ask a question, or post a resource…"></textarea>
+            </div>
+            <button class="btn btn-red" onclick="submitPost()">Post Anonymously</button>
+          </div>
+            <div id="posts-feed"><div class="empty">Loading…</div></div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <!-- ─ PROFILE ─────────────────────────────── -->
+      <div id="panel-profile" class="panel" style="display:none">
+        <div class="panel-hd"><div><h1>Profile &amp; Settings</h1><p class="panel-sub">Manage your account.</p></div></div>
+        <div class="form-card">
+          <h3>Account Information</h3>
+          <div class="form-group"><label>Full Name</label>     <input type="text"  id="p-name"  disabled /></div>
+          <div class="form-group"><label>Email</label>         <input type="email" id="p-email" disabled /></div>
+          <div class="form-group"><label>Member Since</label>  <input type="text"  id="p-since" disabled /></div>
+        </div>
+        <div class="form-card" style="margin-top:20px">
+          <h3>Change Password</h3>
+          <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" id="p-cur" placeholder="Current password" />
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="p-new" placeholder="New password" oninput="checkPwStrength(this.value,'p-rules')" />
+              <button type="button" class="pw-eye" onclick="togglePw('p-new',this)">👁</button>
+            </div>
+            <div class="pw-rules" id="p-rules">
+              <span id="p-rr-len" class="rule">✗ Min 6 characters</span>
+              <span id="p-rr-cap" class="rule">✗ 1 uppercase letter</span>
+              <span id="p-rr-num" class="rule">✗ 1 number</span>
+              <span id="p-rr-sym" class="rule">✗ 1 symbol (@,$,#,!…)</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Confirm New Password</label>
+            <input type="password" id="p-conf" placeholder="Repeat new password" />
+          </div>
+          <div id="p-err" class="form-err" style="display:none"></div>
+          <div class="form-btns">
+            <button class="btn btn-red" onclick="handleChangePassword()">Update Password</button>
+          </div>
+        </div>
+        <div class="form-card danger-card" style="margin-top:20px">
+          <h3>Danger Zone</h3>
+          <p style="color:var(--muted);margin-bottom:16px">Permanently deletes your account and all data.</p>
+          <button class="btn btn-danger" onclick="handleDeleteAccount()">Delete My Account</button>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- /dash-body -->
+</div><!-- /page-dash -->
+
+<!-- ══ TOAST ══════════════════════════════════════ -->
+<div id="toast" class="toast" style="display:none"></div>
+
+<!-- ══ LOADING OVERLAY ═══════════════════════════ -->
+<div id="loading" class="loading-overlay" style="display:none">
+  <div class="loading-spinner"></div>
+</div>
+
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
