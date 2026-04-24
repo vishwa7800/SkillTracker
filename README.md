@@ -45,7 +45,6 @@ SkillTracker/
 ├── style.css            # Visual design, responsive layout, animations
 ├── script.js            # App logic: auth, data, routing, dashboard
 ├── supabase-config.js   # Supabase client configuration
-├── supabase-schema.sql  # Database schema for Supabase tables
 └── README.md            # Project documentation
 ```
 
