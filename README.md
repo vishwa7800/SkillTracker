@@ -19,12 +19,25 @@ Built with a focus on simplicity and consistency, SkillTracker helps you set goa
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML5, CSS3 (Custom Variables, Flexbox/Grid), Vanilla JavaScript (SPA architecture)
-- **Backend/BaaS:** [Supabase](https://supabase.com/) (PostgreSQL Database, Authentication)
-- **Data Visualization:** [Chart.js](https://www.chartjs.org/)
-- **AI Integration:** [Google Gemini API](https://ai.google.dev/)
-- **PDF Generation:** [jsPDF](https://parall.ax/products/jspdf)
-- **Fonts:** Syne & DM Sans (Google Fonts)
+- **Frontend Core:**
+  - **HTML5:** Semantic SPA (Single Page Application) architecture with zero page reloads.
+  - **Vanilla CSS3:** Modern design system utilizing CSS Variables, Flexbox, CSS Grid, Glassmorphism, dark theme, and micro-animations.
+  - **Vanilla JavaScript (ES6+):** Pure JavaScript client logic managing UI state, SPA routing, and DOM interactions without heavy framework overhead.
+- **Backend & Database (BaaS):**
+  - **[Supabase](https://supabase.com/):**
+    - **PostgreSQL Database:** Relational database storing users, skills, practice logs, and community interactions.
+    - **Supabase Authentication:** Secure Gmail/email registration, login, and JWT session persistence.
+    - **Row Level Security (RLS):** Database-level security policies enforcing private user data isolation.
+- **Artificial Intelligence:**
+  - **[Google Gemini API](https://ai.google.dev/) (`gemini-flash-latest`):** Generates structured 8-session learning roadmaps based on any skill input.
+- **Serverless & Security Layer:**
+  - **Node.js Serverless Functions (Vercel Functions):** Secure backend proxy (`/api/generate-path`) keeping the `GEMINI_API_KEY` hidden on the server and completely protected from browser DevTools/Network inspection.
+- **Libraries & Integrations:**
+  - **[Chart.js](https://www.chartjs.org/):** Dynamic data visualization for learning frequency and progress tracking.
+  - **[jsPDF](https://parall.ax/products/jspdf):** Client-side PDF generation to export weekly progress reports.
+- **Deployment & DevOps:**
+  - **[Vercel](https://vercel.com/):** Global Edge CDN hosting, serverless functions, and production environment variable management.
+  - **Git & GitHub:** Version control.
 
 ## 🚀 Getting Started
 
