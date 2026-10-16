@@ -1,0 +1,11 @@
+{
+  "name": "skill-tracker",
+  "version": "1.0.0",
+  "description": "SkillTracker - Personal learning dashboard",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 ."
+  }
+}
